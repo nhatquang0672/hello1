@@ -1,134 +1,128 @@
-# Game Design Document (draft v0.1)
+# Game Design Document (draft v0.2)
 
-Working title: TBD. Terms are defined in [GLOSSARY.md](../GLOSSARY.md).
+Working title: TBD
 
-Status legend: **Decided** = you chose it · **Leaning** = recommended, you haven't confirmed · **Open** = not discussed yet.
+Status legend: **Decided** = you chose it · **Leaning** = recommended in discussion, you haven't confirmed · **Proposal** = new idea, not discussed yet · **Open** = undecided.
 
 ## 1. Pitch
 
-A single-player tactics puzzle game. Enemies **telegraph** their attacks. You answer by **playing cards** onto a small grid where **terrain** decides what's possible. If your **General** falls, you lose.
+An AI has taken over its machine army and is attacking Earth. **The last human**, with a small team of **animals**, fights back using the last tools of the human era and **parts salvaged from the robots they destroy**. (Decided)
 
-> Hook: you can only summon next to your own units, so to stop a threat your General has to move close to danger.
+A single-player tactics puzzle game on a small grid. Robots show their attacks before they act, and you answer with a plan.
 
-Inspired by: Into the Breach (telegraphs, clarity), Duelyst (General, summoning, cards), Wesnoth (terrain, time of day), Magic: The Gathering (keywords, combos).
+Inspired by: Into the Breach (telegraphs, clarity), Duelyst (a leader you must protect), Wesnoth (terrain), Magic: The Gathering (combos).
 
-## 2. Design pillars
+## 2. Priorities
 
-1. **Clarity first.** Show the player everything. No randomness in combat. A mechanic that makes the board harder to read has to earn its place. (Leaning)
-2. **Cards on the board.** Where you play a card matters as much as which card it is. (Leaning)
-3. **Combos come from the board, not from card text.** Cards are one simple verb each. The depth comes from position, order, terrain and telegraphs. (Leaning)
+1. **Simple** (Decided)
+2. **Fun** (Decided)
+3. **Combo building** (Decided)
 
-## 3. Core rules
+Not a goal: making money. Paid solutions were dropped. (Decided)
+
+## 3. Your team
+
+| Member | Role | Part slots | Status |
+|---|---|---|---|
+| 🧍 **The human** | Leader and engineer. Salvages and fits parts. If the human dies, the run ends. | 4 (hands + backpack) | Leaning |
+| 🐕 / 🐻 / 🐦 … **Animals** | Real animals, no spirits or magic. Each has one natural trait. They carry parts on a harness. | 1–2 | Leaning |
+
+Team size: the human + 2 animals chosen at the start of a run from a small roster. (Leaning)
+
+Example animals (Leaning):
+
+| Animal | Natural trait | Slots |
+|---|---|---|
+| 🐕 Dog | Fast, drags a unit 1 tile | 2 |
+| 🐻 Bear | Heavy (can't be pushed), knocks units back | 2 |
+| 🐦 Crow | Flies over obstacles and water, fragile | 1 |
+| 🐗 Boar | Charges in a line, pushing whatever it hits | 2 |
+| 🐢 Turtle | Shell: no damage from the front, slow | 2 |
+
+Human ability (Leaning): **hack** one robot's telegraphed attack per turn, for example to redirect it.
+
+## 4. Starter kit: the last tools of the human era (Proposal)
+
+Every run starts with a few everyday human tools, so you can make combos from the first battle, before you've salvaged anything. They're weaker than robot parts and get replaced over the run.
+
+| Tool | Kind | Effect |
+|---|---|---|
+| **Crowbar** | Trigger | Push a unit 1 tile (impact) |
+| **Flare Gun** | Trigger | Sets fuel on fire at range; can also lure a robot one tile toward the flare |
+| **Jerry Can** | Setup | Pours fuel on a tile (limited uses per battle) |
+
+Open: how many tools; whether they have limited uses; whether animals can carry them.
+
+## 5. Robots (enemies)
+
+- Robots **telegraph** their attacks onto tiles before acting, shown as red targeting lasers. (Leaning)
+- Each robot has **one nature** with a weakness that makes sense. (Leaning)
+
+| Nature | Examples | Weakness |
+|---|---|---|
+| ⛽ Fuel-powered | Tank, Flamer | Fire: explodes, damaging neighbors |
+| ⚡ Electric | Drone, Taser | Shock: chains to nearby electric robots |
+| 🔩 Heavy | Walker, Crusher | Pushed into water: sinks |
+| 🪶 Light | Scout drone | Pushed: flies 3 tiles, not 1 |
+
+Open: number of robots per battle; whether there's an enemy commander (a duel) or you win by surviving N turns.
+
+## 6. Parts and salvage
+
+- Destroyed robots drop a part on the board; a team member **moves onto the tile** to pick it up. (Leaning)
+- The human fits parts between battles. (Leaning)
+- A robot's nature decides what you salvage. (Leaning)
+
+| Robot nature | Setup part | Trigger part |
+|---|---|---|
+| ⛽ Fuel | Oil Sprayer (coats a tile with fuel) | Igniter (sets fuel on fire) |
+| ⚡ Electric | Charge Tag (marks a robot to receive shock) | Spark Arm (shoots a shock) |
+| 🔩 Heavy | Anchor (pins a robot in place) | Hammer (big push and impact) |
+| 🪶 Light | Magnet Tag (marks a robot to be pulled) | Magnet (pulls marked robots) |
+
+- **The same part works differently on different carriers** (a Magnet on the Bear pulls the robot in; on the Crow, the Crow flies to the robot). (Leaning)
+- **No cards:** every part's ability is always available, with a cooldown. (Leaning)
+
+## 7. Combos
+
+**Combo = setup + trigger × robot nature × position.** (Leaning)
+
+Effects come **only from your parts and tools**. No hazards are placed on the map in advance, and robots don't spill things when they die. (Leaning)
+
+Main combo sources (Leaning):
+1. The order your 3 units act in
+2. Turning robot attacks on robots (pushing, and the human's hack)
+3. Setup + trigger parts reacting with robot natures
+4. Pushing into terrain (water, walls)
+
+Example: the Dog sprays fuel on a fuel tank robot → the human fires the Flare Gun → the tank explodes → the blast hits 2 electric drones → the shock chains between them.
+
+## 8. Board and rules
 
 | Rule | Status |
 |---|---|
-| Single-player only, against an AI that telegraphs | Leaning |
-| Square grid (about 6×6 to 8×8) | Leaning |
-| No randomness in combat; terrain gives flat bonuses, never dodge chances | Leaning (required if you sell solutions) |
-| Telegraphs target **tiles**, not units | Leaning |
-| You start with only your General on the board and summon units from cards next to your own units | Leaning |
-| Your General can fight | Leaning |
-| Mana goes up automatically each turn (Duelyst style, no lands) | Leaning (fixed mana for one-turn puzzles) |
-| Hand: no random draws mid-puzzle; the next card is visible | Leaning |
-| A cap on summoned units on the board (about 3 besides the General) | Leaning |
-| Free undo during your turn | Leaning |
-| A preview of the full result before you commit (damage, pushes, chain reactions) | Leaning |
+| Single-player, against an AI that telegraphs | Leaning |
+| Small square grid (about 6×6 to 8×8) | Leaning |
+| Telegraphs target tiles, not units | Leaning |
+| No randomness in combat | Leaning |
+| Simple terrain only: open ground, water, walls, buildings | Leaning |
 
-## 4. Turn loop
+## 9. Run structure (Open)
 
-```
-1. Enemy intent   enemies move, then telegraph their attacks onto tiles
-2. Your turn      you get mana; your General moves and acts; you play cards; your units act
-3. Resolve        telegraphed attacks land, in a visible numbered order
-4. World tick     day/night moves forward; terrain effects apply
-```
+- Several battles per run; parts and the team carry over between battles.
+- Variety between runs comes from: which animals you pick, which robots you destroy, which parts you keep.
+- Open: how many battles, choosing a route, bosses.
 
-## 5. Win and lose
+## 10. Open questions
 
-- **Lose:** your General dies. (Leaning)
-- **Win:** Open, but this decides whether the game feels too close to Into the Breach:
-  - (a) Survive N turns. This is Into the Breach's model, and the risk is the game reads as Into the Breach with cards.
-  - (b) **Recommended:** a duel. The enemy has a General that also summons and telegraphs its summons. You win by killing it.
+1. Win condition: an enemy commander (a duel) or survive N turns?
+2. The starter kit (section 4): which tools, how many, with limited uses or not?
+3. How many robots per battle?
+4. Run length and structure
+5. Title
+6. Technology (a TypeScript web game was suggested but not discussed)
 
-## 6. Combos (chosen for clarity)
+## 11. References
 
-Start with:
-1. **Turning their attacks on them:** push an enemy onto a tile another enemy is about to hit.
-2. **Sequencing:** the same cards give different results in a different order.
-3. **Terrain changes:** forest burns, water freezes into walkable ice, ice melts.
-
-Later: status + element combos (around 5 statuses at most), summoning as setup (summoning to reach further), and **trap cards** (played face up, they trigger while attacks resolve).
-
-Clarity rules: around 8 keywords at most, no hidden triggers, effects resolve in a visible numbered order, a full preview, and free undo.
-
-## 7. Terrain and time
-
-- A few terrain types with simple flat effects (for example, forest gives +1 armor, high ground gives +1 range), plus impassable tiles and hazards (water, chasms).
-- Pushing units into hazards is how terrain gets dramatic.
-- A **day/night cycle** that you can see coming: a telegraph for the whole map that changes unit strength.
-- Not using: Wesnoth's per-unit terrain tables or dodge chances.
-
-## 8. Content structure
-
-| Mode | Description | Status |
-|---|---|---|
-| Hand-made levels | Tutorial and teaching the rules; free | Leaning |
-| Generated puzzles | One unique puzzle per player, from a seed, checked by the solver | Leaning |
-| Daily puzzle | One short turn everyone gets the same; quick to pick up | Leaning |
-| Battles / runs | Multi-turn battles, possibly in a roguelite run | Open (later) |
-
-**Puzzle = 1 or 2 turns** (Leaning). That keeps the solver exact. Longer battles get reviewed one turn at a time.
-
-**What makes a generated puzzle good enough to keep:** no single card solves it; every solution uses at least 2 cards interacting; there are few solutions.
-
-What counts as solved: Open. (a) a perfect win, (b) a score, as in Into the Breach (recommended for battles), or (c) both.
-
-## 9. Monetization
-
-- **Decided:** players can pay for the **solution** to a puzzle.
-- **Leaning:** the chess.com model. Free daily puzzle and a limited number of generated puzzles; a subscription unlocks unlimited puzzles, the archive and **solver review** of your play; single solutions are also for sale.
-- **Leaning:** several levels of help, each based on the player's current position: a free nudge, a paid next move, a paid full solution.
-- Solutions must be computed on a **server** so the game can't be cracked.
-- Open: which audience comes first, hardcore tactics players or casual daily-puzzle players.
-
-## 10. Technical direction
-
-- TypeScript web game. Game rules are plain logic code, separate from the drawing code. (Leaning)
-- Every move is an action object (the Command pattern). One system powers the preview, undo, replays, the solver and solution review.
-- The solver runs on a server; you need a server for accounts, payments and solutions anyway.
-
-## 11. Scope: cut or delay
-
-| Idea | Verdict |
-|---|---|
-| Player vs player | Cut (breaks the telegraphs) |
-| Wesnoth's per-unit terrain tables and dodge chances | Cut |
-| Deck building | Delay (start with a fixed deck per General) |
-| Many Generals or factions | Delay (start with 1) |
-| Multi-island roguelite structure | Delay |
-
-**First milestone:** one hand-made battle on a 6×6 board, with 1 General, 4 fixed cards, 3 terrain types and enemies that telegraph. Prove it's fun before building anything else.
-
-## 12. Risks
-
-1. **Scope.** Into the Breach took 2 experienced developers 4 years.
-2. **Too close to Into the Breach.** Needs the duel and summoning hook to stand apart.
-3. **Fights in Tight Spaces** (cards, a grid and telegraphs) is the closest competitor. Play it.
-4. **Audience mismatch.** Subscription buyers are casual players; the game's depth suits hardcore players.
-5. **The generator is the hardest technical piece:** puzzles that are interesting, not just winnable.
-6. **Licenses.** Duelyst is CC0, so its code can be reused (check the assets). Wesnoth (GPLv2) and Forge (GPLv3) are for ideas only.
-
-## 13. Open questions
-
-1. Win condition: survive N turns, or a duel with the enemy General?
-2. Which value comes first: clarity, discovery, attachment, or cards on the board?
-3. Should trap cards be in the first version?
-4. What counts as solving a puzzle: a perfect win, a score, or both?
-5. Which audience comes first?
-6. Rising or fixed mana (depends on the puzzle length)?
-
-## 14. References
-
-- Games: Into the Breach, Duelyst, Fights in Tight Spaces, Slay the Spire, Hoplite, Wesnoth, Possibility Storm puzzles.
-- Code: `duelyst/app/sdk/` (`actions/`, `challenges/`, `intentType.coffee`), `duelyst/server/ai/`; `wesnoth/data/core/terrain.cfg`, `schedules.cfg`; `forge/forge-gui/res/puzzle/*.pzl`.
-- Talks and articles: GDC "Into the Breach Design Postmortem"; Red Blob Games; Game Programming Patterns, "Command"; Mark Rosewater, "Making Magic".
+- Games: Into the Breach, Duelyst, Wesnoth, Magic: The Gathering, Fights in Tight Spaces, Slay the Spire.
+- Code: `duelyst/` (CC0), `wesnoth/` (GPLv2: ideas only), `forge/` (GPLv3: ideas only).
