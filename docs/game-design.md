@@ -120,7 +120,7 @@ Example: the Dog sprays fuel on a fuel tank robot → the human fires the Flare 
 3. How many robots per battle?
 4. Run length and structure
 5. Title
-6. Technology (a TypeScript web game was suggested but not discussed)
+6. ~~Technology~~: Phaser 4 + TypeScript, web first, phone browser in landscape (Decided). See `docs/research/game-engine.md`.
 
 ## 11. References
 

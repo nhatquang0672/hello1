@@ -15,7 +15,7 @@ Research for hello1's art, done 2026-11-06. The decisions below override anythin
 
 ## Proposed, not confirmed
 
-- Platform: web first, sized for phone portrait.
+- Platform: web first, sized for a phone browser in landscape.
 - Sizes: 48×24 isometric tiles, 64×64 units, 96×96 bosses.
 
 ## Reports
